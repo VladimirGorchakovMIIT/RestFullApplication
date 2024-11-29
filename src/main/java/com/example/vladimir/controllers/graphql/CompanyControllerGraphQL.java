@@ -24,7 +24,6 @@ public class CompanyControllerGraphQL {
 
     @QueryMapping
     public List<Company> getAllCompanies(){
-        log.info("Вывод всех компаний");
         return companyService.getAllCompany();
     }
 
@@ -34,7 +33,30 @@ public class CompanyControllerGraphQL {
     }
 
     @MutationMapping
+    public String createCompany(@Argument CompanyInput companyInput){
+        Company company = new Company(companyInput.name, companyInput.description, new ArrayList<>(), new ArrayList<>());
+        companyService.addNewCompany(company);
+        return "Была создана новая компания";
+    }
+    @MutationMapping
+    public String updateCompany(@Argument Long companyId, @Argument CompanyInput companyInput){
+        String result = "Компания была успешно добавлена";
+
+        Company company = companyService.getCompanyById(companyId);
+
+        company.setName(companyInput.name);
+        company.setDescription(companyInput.description);
+
+        companyService.updateCompany(companyId, company);
+
+        return result;
+    }
+
+    @MutationMapping
     public Boolean deleteCompanyById(@Argument Long id){
         return companyService.deleteCompanyByid(id);
     }
+
+
+    private record CompanyInput(String name, String description){}
 }

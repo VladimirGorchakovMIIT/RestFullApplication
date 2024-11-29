@@ -36,8 +36,8 @@ type Query{
 }
 
 type Mutation{
-    createCompany(name:String!, description:String!, jobs:[JobInput], reviews:[ReviewInput]):Company
-    updateCompany(id:ID!, companyInput:CompanyInput):Company
+    createCompany(companyInput:CompanyInput):String
+    updateCompany(companyId:ID!, companyInput:CompanyInput):String
     deleteCompanyById(id:ID):Boolean
 
     deleteJobById(id:ID!):Boolean
@@ -64,9 +64,6 @@ input ReviewInput{
 }
 
 input CompanyInput{
-    id: ID!,
     name: String!,
     description: String!,
-    jobs: [JobInput]
-    reviews: [ReviewInput]
 }
