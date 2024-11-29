@@ -15,8 +15,9 @@ public class CompanyServiceImpl implements CompanyService {
     private final CompanyRepository companyRepository;
 
     @Override
-    public void addNewCompany(Company company) {
+    public Company addNewCompany(Company company) {
         companyRepository.save(company);
+        return company;
     }
 
     @Override

@@ -13,5 +13,5 @@ public interface CompanyService {
 
     boolean deleteCompanyByid(Long id);
 
-    void addNewCompany(Company company);
+    Company addNewCompany(Company company);
 }

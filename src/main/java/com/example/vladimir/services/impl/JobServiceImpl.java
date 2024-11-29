@@ -23,8 +23,15 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public void deleteJobById(Long id) {
-        jobRepository.deleteById(id);
+    public boolean deleteJobById(Long id) {
+        boolean result = false;
+
+        if(jobRepository.findById(id).isPresent()){
+            jobRepository.deleteById(id);
+            result = true;
+        }
+
+        return result;
     }
 
     @Override
@@ -32,7 +39,14 @@ public class JobServiceImpl implements JobService {
         boolean result = false;
 
         if (jobRepository.findById(id).isPresent()) {
-            createJob(jobUpdate);
+            Job job = getJobById(id);
+            job.setTitle(jobUpdate.getTitle());
+            job.setDescription(jobUpdate.getDescription());
+            job.setMinSalary(jobUpdate.getMinSalary());
+            job.setMaxSalary(jobUpdate.getMaxSalary());
+            job.setLocation(jobUpdate.getLocation());
+
+            createJob(job);
             result = true;
         }
 
