@@ -21,9 +21,11 @@ public class Company extends BaseModel{
     @Column(name = "description", nullable = false)
     private String description;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "company")
     private List<Job> jobs;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "company")
     private List<Review> reviews;
 

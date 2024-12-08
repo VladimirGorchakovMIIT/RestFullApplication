@@ -58,6 +58,6 @@ public class ReviewControllerGraphQL {
         return "Отзыв был обновлен";
     }
 
-    record ReviewInput(String title, String description, String rating){}
+    private record ReviewInput(String title, String description, String rating){}
 
 }

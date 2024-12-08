@@ -13,8 +13,6 @@ public class BaseModel {
     @Column(name = "id")
     private Long id;
 
-    private String newString;
-
     public BaseModel() {
     }
 

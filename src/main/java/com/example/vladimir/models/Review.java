@@ -19,7 +19,6 @@ public class Review extends BaseModel {
     @Column(name = "rating", nullable = false)
     private double rating;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "company_id", referencedColumnName = "id")
     private Company company;

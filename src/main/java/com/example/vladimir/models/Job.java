@@ -27,7 +27,6 @@ public class Job extends BaseModel{
     private String location;
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "company_id", referencedColumnName = "id")
     private Company company;
 

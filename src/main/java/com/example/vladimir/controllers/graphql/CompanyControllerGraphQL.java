@@ -34,9 +34,12 @@ public class CompanyControllerGraphQL {
 
     @MutationMapping
     public String createCompany(@Argument CompanyInput companyInput){
+        String result = "Была создана новая компания";
+
         Company company = new Company(companyInput.name, companyInput.description, new ArrayList<>(), new ArrayList<>());
         companyService.addNewCompany(company);
-        return "Была создана новая компания";
+
+        return result;
     }
     @MutationMapping
     public String updateCompany(@Argument Long companyId, @Argument CompanyInput companyInput){
