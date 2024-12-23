@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_package = "com.vladimir.grpc";
+option java_outer_classname = "HelloWorldProto";
+
+message FormationChequeRequest{
+  string name = 1;
+  string description = 2;
+  repeated string titleReviews = 3;
+}
+
+message FormationChequeResponse{
+  string formationCheque = 1;
+}
+
+service GreetingService{
+  rpc formationCheque(FormationChequeRequest) returns (FormationChequeResponse);
+}

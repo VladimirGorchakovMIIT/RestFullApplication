@@ -1,10 +1,7 @@
 package com.example.vladimir.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,8 +19,8 @@ public class Review extends BaseModel {
     @Column(name = "rating", nullable = false)
     private double rating;
 
-    @JsonIgnore
     @ManyToOne
+    @JoinColumn(name = "company_id", referencedColumnName = "id")
     private Company company;
 
     public Review() {

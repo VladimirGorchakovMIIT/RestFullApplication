@@ -1,0 +1,69 @@
+type Company{
+    id: ID!,
+    name: String!,
+    description: String!,
+    jobs: [Job]
+    reviews: [Review]
+}
+
+type Job{
+    id: ID!,
+    title:String!,
+    description:String!,
+    minSalary:String!,
+    maxSalary:String!,
+    location:String!,
+    company:Company
+}
+
+type Review{
+    id:ID!,
+    title: String!,
+    description:String!,
+    rating: Float!
+    company:Company
+}
+
+type Query{
+    getAllCompanies:[Company]#Запрос на получения списка имеющихся компаний в базе данных
+    getCompanyById(id: ID):Company#Запрос на получения компании по ID
+
+    getAllReviews(id:ID):[Review]#Запрос на получения отзывов об компании
+    getReviewById(companyId:ID, reviewId:ID):Review#Запрос на получения отзывов по ID
+
+    getAllJobs:[Job]#Запрос на получения списка имеющихся работ в базе данных
+    getJobById(id:ID):Job#Запрос на получения работы по ID
+}
+
+type Mutation{
+    createCompany(companyInput:CompanyInput):String#Создание новой компании
+    updateCompany(companyId:ID!, companyInput:CompanyInput):String#Редактирование компании
+    deleteCompanyById(id:ID):Boolean#Удаление компании по ID
+
+    createJob(jobInput:JobInput, companyId:ID):String#Создание нового рабочего места
+    updateJob(jobId:ID, jobInput:JobInput companyId:ID):String#Обновление рабочего места
+    deleteJobById(id:ID!):Boolean#Удаление рабочего места
+
+    createReview(reviewInput:ReviewInput, companyId:ID):String#Создание нового отзыва
+    updateReview(reviewId:ID, reviewInput:ReviewInput, companyId:ID):String#Обновление отзыва об компании
+    deleteReviewById(reviewId:ID!, companyId:ID!):Boolean#Удаление отзыва
+}
+
+input JobInput{
+    title:String!,
+    description:String!,
+    minSalary:String!,
+    maxSalary:String!,
+    location:String!,
+}
+
+input ReviewInput{
+    title: String!,
+    description:String!,
+    rating: Float!
+}
+
+input CompanyInput{
+    name: String!,
+    description: String!,
+}

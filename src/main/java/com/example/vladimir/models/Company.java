@@ -25,6 +25,7 @@ public class Company extends BaseModel{
     @OneToMany(mappedBy = "company")
     private List<Job> jobs;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "company")
     private List<Review> reviews;
 

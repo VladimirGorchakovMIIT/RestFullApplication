@@ -1,9 +1,7 @@
 package com.example.vladimir.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,6 +27,7 @@ public class Job extends BaseModel{
     private String location;
 
     @ManyToOne
+    @JoinColumn(name = "company_id", referencedColumnName = "id")
     private Company company;
 
     public Job() {}

@@ -13,18 +13,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Slf4j
-@RequestMapping("/company")
-@RequiredArgsConstructor
 @RestController
+@RequiredArgsConstructor
+@RequestMapping("/company")
 public class CompanyController {
     private final CompanyServiceImpl companyService;
     private final ObjectMapper objectMapper;
-
-    //Получение объекта из списка Company по его id
-    @GetMapping("/{id}")
-    public String get(@PathVariable("id") Long id) throws JsonProcessingException {
-        return objectMapper.writeValueAsString(companyService.getCompanyById(id));
-    }
 
     //Получение списка всех объектов Company
     @GetMapping
@@ -32,7 +26,11 @@ public class CompanyController {
         return new ResponseEntity<>(companyService.getAllCompany(), HttpStatus.OK);
     }
 
-
+    //Получение объекта из списка Company по его id
+    @GetMapping("/{id}")
+    public ResponseEntity<Company> get(@PathVariable("id") Long id) throws JsonProcessingException {
+        return new ResponseEntity<>(companyService.getCompanyById(id), HttpStatus.OK);
+    }
 
     @PostMapping
     public ResponseEntity<String> add(@RequestBody Company company){
