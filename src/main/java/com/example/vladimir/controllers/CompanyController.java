@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Slf4j
-@RequestMapping("/company")
-@RequiredArgsConstructor
 @RestController
+@RequiredArgsConstructor
+@RequestMapping("/company")
 public class CompanyController {
     private final CompanyServiceImpl companyService;
     private final ObjectMapper objectMapper;
